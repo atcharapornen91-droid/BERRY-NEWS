@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ | Berry News 🍓</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F6F7F5;
+      --card: #FFFFFF;
+      --text: #3A3A3A;
+      --muted: #777;
+      --accent: #E8AEB7;
+      --border: #E1E3DF;
+    }
+
+    body.dark {
+      --bg: #1F2328;
+      --card: #2B2F36;
+      --text: #EAEAEA;
+      --muted: #AAA;
+      --border: #3A3F45;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: 0.3s ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .toggle {
+      font-size: 1.3rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .back-home {
+      max-width: 800px;
+      margin: 1.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .back-home a {
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    /* clear float */
+    main::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: 1.35;
+      margin: 0 0 1.5rem;
+    }
+
+    /* รูปประกอบข่าว */
+    .article-media {
+      float: right;
+      width: 35%;
+      margin: 0.2rem 0 1.4rem 2rem;
+    }
+
+    .article-media img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
+    p {
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    blockquote {
+      margin: 1.5rem 0;
+      padding-left: 1.2rem;
+      border-left: 4px solid var(--accent);
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* reactions */
+    .reactions {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+.reactions span.clicked {
+  transform: scale(1.35);
+  color: var(--text);
+}
+
+
+    .reactions span:hover {
+      transform: scale(1.15);
+      color: var(--text);
+    }
+
+    /* ข่าวก่อนหน้า / ถัดไป */
+    .news-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    .news-nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .news-nav a:hover {
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* mobile */
+    @media (max-width: 768px) {
+      .article-media {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Berry News 🍓</h1>
+  <button class="toggle" id="themeToggle">☀️</button>
+</header>
+
+<div class="back-home">
+  <a href="index.html">← กลับหน้าแรก</a>
+</div>
+
+<main>
+  <div class="meta">อ่านเอาขำ · ข่าวออฟฟิศ</div>
+
+  <!-- รูปต้องอยู่ก่อน headline -->
+  <div class="article-media">
+    <img src="images/news001.jpg" alt="พี่ชายสุดหล่อครอปทีมลาป่วย">
+  </div>
+
+  <h2>
+    เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ<br>
+    พี่ชายสุดหล่อครอปทีมทำออฟฟิศสะเทือน
+  </h2>
+
+  <p>
+    เปิดศักราชใหม่ได้ไม่ทันไร ออฟฟิศก็ต้องสะเทือนเล็กน้อย เมื่อ
+    <strong>พี่ชายสุดหล่อแห่งครอปทีม</strong> ขอประเดิมปีด้วยการลาป่วย
+    เพื่อเข้าพบแพทย์ตรวจเช็กอาการเจ็บคอแบบจริงจัง
+  </p>
+
+  <p>
+    เหตุการณ์ดังกล่าวทำให้เพื่อนร่วมทีม โดยเฉพาะ
+    <strong>น้องชายหุ่นนายแบบ (สุดที่รักของทีม)</strong>
+    ออกมาให้สัมภาษณ์สั้น ๆ ว่า
+  </p>
+
+  <blockquote>“i need you everyday”</blockquote>
+
+  <p>
+    สร้างแรงสั่นสะเทือนทางอารมณ์ให้กับผู้พบเห็นเป็นอย่างมาก
+    จนหลายคนเริ่มตั้งคำถามว่า นี่คืออาการป่วยธรรมดา
+    หรือเป็นช่องว่างในใจของใครบางคนกันแน่
+  </p>
+
+  <blockquote>“อย่าคิดไปไกลจ้า เค้าแค่อยากหาคนมาซัพพอททำงานให้จ้า”</blockquote>
+  <blockquote>“พวกผช มันชอบหลอกใช้กะเทย”</blockquote>
+
+<div class="reactions" data-news="news001">
+  <span data-type="laugh">😂 <b>0</b></span>
+  <span data-type="facepalm">🤦‍♀️ <b>0</b></span>
+  <span data-type="fire">🔥 <b>0</b></span>
+  <span data-type="skull">💀 <b>0</b></span>
+</div>
+
+
+  <nav class="news-nav">
+    <a href="#">← ข่าวก่อนหน้า</a>
+    <a href="news002.html">ข่าวถัดไป →</a>
+  </nav>
+</main>
+
+<footer>
+  © 2026 Berry News | ข่าวจริงบ้าง ไม่จริงบ้าง
+</footer>
+
+<script>
+  const toggle = document.getElementById("themeToggle");
+  const body = document.body;
+
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark");
+    toggle.textContent = "🌙";
+  }
+
+  toggle.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    const isDark = body.classList.contains("dark");
+    toggle.textContent = isDark ? "🌙" : "☀️";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+</script>
+<script>
+  const reactions = document.querySelector(".reactions");
+  const newsId = reactions.dataset.news;
+
+  reactions.querySelectorAll("span").forEach(btn => {
+    const type = btn.dataset.type;
+    const countEl = btn.querySelector("b");
+
+    // โหลดค่าที่เคยกด
+    const saved = localStorage.getItem(`${newsId}-${type}`);
+    countEl.textContent = saved ? saved : 0;
+
+    btn.addEventListener("click", () => {
+      let count = parseInt(countEl.textContent);
+      count++;
+      countEl.textContent = count;
+      localStorage.setItem(`${newsId}-${type}`, count);
+
+      btn.classList.add("clicked");
+      setTimeout(() => btn.classList.remove("clicked"), 200);
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+

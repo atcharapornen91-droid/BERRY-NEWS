@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Berry News 🍓</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #F6F7F5;
+  --text: #3A3A3A;
+  --card: #ffffff;
+  --subtext: #555;
+  --border: #ddd;
+}
+
+body.dark {
+  --bg: #1F2328;
+  --text: #EAEAEA;
+  --card: #2B2F36;
+  --subtext: #CCC;
+  --border: #333;
+}
+
+/* base */
+body {
+  font-family: Inter, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  transition: 0.3s ease;
+}
+
+/* header */
+header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+
+/* theme toggle */
+#themeToggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--card);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  z-index: 99;
+}
+
+/* secret button */
+.secret-btn {
+  text-align: right;
+  margin: 1rem 2rem;
+}
+
+.secret-btn button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+/* main */
+main {
+  max-width: 900px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+/* hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: var(--card);
+  padding: 1.8rem;
+  border-radius: 24px;
+  transition: transform 0.2s ease;
+}
+
+.hero:hover {
+  transform: translateY(-4px);
+}
+
+.hero img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  margin: 0 0 1rem;
+}
+
+.hero p {
+  line-height: 1.6;
+  color: var(--subtext);
+}
+
+footer {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--subtext);
+  padding: 2rem 1rem;
+  opacity: 0.7;
+}
+
+/* reaction */
+.reaction-summary {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<button id="themeToggle">☀️</button>
+
+<header>
+  <h1>Berry News 🍓</h1>
+</header>
+
+<div class="secret-btn">
+  <button onclick="openSecret()">🔐 ส่งข่าวลับ</button>
+</div>
+
+
+<main id="newsContainer"></main>
+
+<script>
+/* ---------- data ---------- */
+const hero = {
+  id: "news001",
+  title: "เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ",
+  excerpt: "พี่ชายสุดหล่อครอปทีมลาป่วยตรวจคอ ทำออฟฟิศสะเทือน...",
+  image: "images/news001.jpg",
+  link: "news001.html"
+};
+
+function reaction(id, type) {
+  return localStorage.getItem(id + "-" + type) || 0;
+}
+
+const total =
+  ["fire","laugh","facepalm","skull"]
+    .reduce((s,t)=>s + Number(reaction(hero.id,t)),0);
+
+/* ---------- render ---------- */
+document.getElementById("newsContainer").innerHTML = `
+  <a href="${hero.link}" style="text-decoration:none;color:inherit;">
+    <article class="hero">
+      <div>
+        <h2>${hero.title}</h2>
+        <p>${hero.excerpt}</p>
+
+        <div class="reaction-summary">
+          <span>🔥 ${reaction(hero.id,"fire")}</span>
+          <span>😂 ${reaction(hero.id,"laugh")}</span>
+          <span>🤦‍♀️ ${reaction(hero.id,"facepalm")}</span>
+          <span>💀 ${reaction(hero.id,"skull")}</span>
+          <span>รวม ${total}</span>
+        </div>
+      </div>
+
+      <img src="${hero.image}" alt="${hero.title}">
+    </article>
+  </a>
+`;
+
+/* ---------- secret ---------- */
+function openSecret() {
+  const pass = prompt("กรอกรหัสลับสำหรับส่งข่าว");
+  if (pass === "berryoffice") {
+    location.href = "secret.html";
+  } else if (pass) {
+    alert("❌ รหัสไม่ถูกต้องจ้า");
+  }
+}
+
+/* ---------- theme ---------- */
+const toggle = document.getElementById("themeToggle");
+const body = document.body;
+
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark");
+  toggle.textContent = "🌙";
+}
+
+toggle.onclick = () => {
+  body.classList.toggle("dark");
+  const dark = body.classList.contains("dark");
+  toggle.textContent = dark ? "🌙" : "☀️";
+  localStorage.setItem("theme", dark ? "dark" : "light");
+};
+</script>
+
+<footer>
+© 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR
+</footer>
+
+</body>
+</html>
