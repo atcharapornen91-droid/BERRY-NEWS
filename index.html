@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Berry News 🍓</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -127,6 +128,14 @@ footer {
   opacity: 0.7;
 }
 
+/* สไตล์สำหรับจุดลับใน Footer */
+.hidden-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+  opacity: 0.5;
+}
+
 /* reaction */
 .reaction-summary {
   display: flex;
@@ -141,7 +150,6 @@ footer {
   .hero {
     grid-template-columns: 1fr;
   }
-
 }
 </style>
 </head>
@@ -157,7 +165,6 @@ footer {
 <div class="secret-btn">
   <button onclick="openSecret()">🔐 ส่งข่าวลับ</button>
 </div>
-
 
 <main id="newsContainer"></main>
 
@@ -201,12 +208,19 @@ document.getElementById("newsContainer").innerHTML = `
   </a>
 `;
 
-/* ---------- secret ---------- */
+/* ---------- secret (อัปเดตรหัสผ่านใหม่) ---------- */
 function openSecret() {
-  const pass = prompt("กรอกรหัสลับสำหรับส่งข่าว");
+  const pass = prompt("กรอกรหัสลับเพื่อดำเนินการต่อ");
+  
   if (pass === "berryoffice") {
+    // รหัสสำหรับแจ้งข่าวปกติ
     location.href = "secret.html";
-  } else if (pass) {
+  } 
+  else if (pass === "youcantkillfiona") { 
+    // รหัสลับเฉพาะ Admin (Fiona)
+    location.href = "secret-admin.html";
+  } 
+  else if (pass) {
     alert("❌ รหัสไม่ถูกต้องจ้า");
   }
 }
@@ -229,10 +243,9 @@ toggle.onclick = () => {
 </script>
 
 <footer>
-© 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR
+© 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR 
+<a href="secret-admin.html" class="hidden-link">.</a>
 </footer>
 
 </body>
 </html>
-
-<!-- force deploy -->
