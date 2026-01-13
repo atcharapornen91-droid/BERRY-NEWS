@@ -31,12 +31,10 @@ body {
   background: var(--bg);
   color: var(--text);
   margin: 0;
-  transition: 0.3s ease;
-
-  /* ⭐ สำคัญ: ทำ sticky footer */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: 0.3s ease;
 }
 
 /* header */
@@ -91,8 +89,7 @@ main {
   max-width: 900px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
-
-  flex: 1; /* ⭐ ดัน footer ลงล่าง */
+  flex: 1;
 }
 
 /* hero */
@@ -145,11 +142,11 @@ footer {
   opacity: 0.7;
 }
 
+/* hidden admin link */
 .hidden-link {
   text-decoration: none;
   color: var(--subtext);
   opacity: 0.15;
-  font-size: 0.8rem;
   margin-left: 6px;
   cursor: pointer;
 }
@@ -158,6 +155,11 @@ footer {
   opacity: 0.6;
 }
 
+/* responsive */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
@@ -171,7 +173,7 @@ footer {
 </header>
 
 <div class="secret-btn">
-  <button onclick="openSecret()">🔐 ส่งข่าวลับ</button>
+  <button onclick="goToForm()">🔐 ส่งข่าวลับ</button>
 </div>
 
 <main id="newsContainer"></main>
@@ -186,14 +188,6 @@ const hero = {
   link: "news001.html"
 };
 
-function reaction(id, type) {
-  return localStorage.getItem(id + "-" + type) || 0;
-}
-
-const total =
-  ["fire","laugh","facepalm","skull"]
-    .reduce((s,t)=>s + Number(reaction(hero.id,t)),0);
-
 /* ---------- render ---------- */
 document.getElementById("newsContainer").innerHTML = `
   <a href="${hero.link}" style="text-decoration:none;color:inherit;">
@@ -201,34 +195,18 @@ document.getElementById("newsContainer").innerHTML = `
       <div>
         <h2>${hero.title}</h2>
         <p>${hero.excerpt}</p>
-
-        <div class="reaction-summary">
-          <span>🔥 ${reaction(hero.id,"fire")}</span>
-          <span>😂 ${reaction(hero.id,"laugh")}</span>
-          <span>🤦‍♀️ ${reaction(hero.id,"facepalm")}</span>
-          <span>💀 ${reaction(hero.id,"skull")}</span>
-          <span>รวม ${total}</span>
-        </div>
       </div>
-
       <img src="${hero.image}" alt="${hero.title}">
     </article>
   </a>
 `;
 
-/* ---------- secret ---------- */
-function openSecret() {
-  const pass = prompt("กรอกรหัสลับเพื่อดำเนินการต่อ");
-
-  if (pass === "berryoffice") {
-    location.href = "secret.html";
-  } 
-  else if (pass === "youcantkillfiona") {
-    location.href = "secret-admin.html";
-  } 
-  else if (pass) {
-    alert("❌ รหัสไม่ถูกต้องจ้า");
-  }
+/* ---------- Google Form ---------- */
+function goToForm() {
+  window.open(
+    "https://forms.gle/FKQCG28yZRLBAmFP7",
+    "_blank"
+  );
 }
 
 /* ---------- theme ---------- */
@@ -255,6 +233,7 @@ toggle.onclick = () => {
 
 </body>
 </html>
+
 
 
 
