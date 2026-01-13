@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Berry News 🍓</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -128,14 +127,6 @@ footer {
   opacity: 0.7;
 }
 
-/* สไตล์สำหรับจุดลับใน Footer */
-.hidden-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: default;
-  opacity: 0.5;
-}
-
 /* reaction */
 .reaction-summary {
   display: flex;
@@ -150,6 +141,7 @@ footer {
   .hero {
     grid-template-columns: 1fr;
   }
+
 }
 </style>
 </head>
@@ -166,6 +158,7 @@ footer {
   <button onclick="openSecret()">🔐 ส่งข่าวลับ</button>
 </div>
 
+
 <main id="newsContainer"></main>
 
 <script>
@@ -178,49 +171,58 @@ const hero = {
   link: "news001.html"
 };
 
-function reaction(id, type) {
-  return localStorage.getItem(id + "-" + type) || 0;
-}
+const API_URL = "https://script.google.com/macros/s/AKfycbwPS1HhLSUJbdIH6IPjY3JjtHIqPAtDrR50uggaRS_7dvIRlInKUID3MB925l0LqN-Iqw/exec";
 
-const total =
-  ["fire","laugh","facepalm","skull"]
-    .reduce((s,t)=>s + Number(reaction(hero.id,t)),0);
+/* ---------- render news ---------- */
+const container = document.getElementById("newsContainer");
 
-/* ---------- render ---------- */
-document.getElementById("newsContainer").innerHTML = `
-  <a href="${hero.link}" style="text-decoration:none;color:inherit;">
-    <article class="hero">
-      <div>
-        <h2>${hero.title}</h2>
-        <p>${hero.excerpt}</p>
+container.innerHTML = `
+  <article class="hero">
+    <img src="${hero.image}" alt="${hero.title}">
+    <div>
+      <h2>${hero.title}</h2>
+      <p>${hero.excerpt}</p>
 
-        <div class="reaction-summary">
-          <span>🔥 ${reaction(hero.id,"fire")}</span>
-          <span>😂 ${reaction(hero.id,"laugh")}</span>
-          <span>🤦‍♀️ ${reaction(hero.id,"facepalm")}</span>
-          <span>💀 ${reaction(hero.id,"skull")}</span>
-          <span>รวม ${total}</span>
-        </div>
+      <div class="reaction-summary">
+        กำลังโหลด...
       </div>
-
-      <img src="${hero.image}" alt="${hero.title}">
-    </article>
-  </a>
+    </div>
+  </article>
 `;
 
-/* ---------- secret (อัปเดตรหัสผ่านใหม่) ---------- */
+/* ---------- reaction ---------- */
+async function fetchReaction(newsId) {
+  const res = await fetch(`${API_URL}?newsId=${newsId}`);
+  return await res.json();
+}
+
+async function renderReaction(newsId) {
+  const data = await fetchReaction(newsId);
+
+const fire = Number(data.fire) || 0;
+const laugh = Number(data.laugh) || 0;
+const facepalm = Number(data.facepalm) || 0;
+const skull = Number(data.skull) || 0;
+
+const total = fire + laugh + facepalm + skull;
+
+document.querySelector(".reaction-summary").innerHTML = `
+  <span>🔥 ${fire}</span>
+  <span>😂 ${laugh}</span>
+  <span>🤦‍♀️ ${facepalm}</span>
+  <span>💀 ${skull}</span>
+  <span>รวม ${total}</span>
+`;
+}
+
+renderReaction(hero.id);
+
+/* ---------- secret ---------- */
 function openSecret() {
-  const pass = prompt("กรอกรหัสลับเพื่อดำเนินการต่อ");
-  
+  const pass = prompt("กรอกรหัสลับสำหรับส่งข่าว");
   if (pass === "berryoffice") {
-    // รหัสสำหรับแจ้งข่าวปกติ
     location.href = "secret.html";
-  } 
-  else if (pass === "youcantkillfiona") { 
-    // รหัสลับเฉพาะ Admin (Fiona)
-    location.href = "secret-admin.html";
-  } 
-  else if (pass) {
+  } else if (pass) {
     alert("❌ รหัสไม่ถูกต้องจ้า");
   }
 }
@@ -243,9 +245,9 @@ toggle.onclick = () => {
 </script>
 
 <footer>
-© 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR 
-<a href="secret-admin.html" class="hidden-link">.</a>
+© 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR
 </footer>
 
 </body>
 </html>
+
