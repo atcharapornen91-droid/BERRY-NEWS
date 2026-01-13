@@ -180,26 +180,36 @@ footer {
 
 <script>
 /* ---------- data ---------- */
-const hero = {
-  id: "news001",
-  title: "เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ",
-  excerpt: "พี่ชายสุดหล่อครอปทีมลาป่วยตรวจคอ ทำออฟฟิศสะเทือน...",
-  image: "images/news001.jpg",
-  link: "news001.html"
-};
+const newsList = [
+  {
+    id: "news002",
+    title: "เสียงเจาะผนังสะเทือนใจ พนักงานใกล้คลุ้มคลั่ง",
+    excerpt: "ร้านข้างๆ รีโนเวตหนัก เสียงดังจนลูกค้ากรี๊ดกลางร้าน…",
+    image: "images/news002.jpg",
+    link: "news002.html"
+  },
+  {
+    id: "news001",
+    title: "เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ",
+    excerpt: "พี่ชายสุดหล่อครอปทีมลาป่วยตรวจคอ ทำออฟฟิศสะเทือน...",
+    image: "images/news001.jpg",
+    link: "news001.html"
+  }
+];
 
 /* ---------- render ---------- */
-document.getElementById("newsContainer").innerHTML = `
-  <a href="${hero.link}" style="text-decoration:none;color:inherit;">
-    <article class="hero">
-      <div>
-        <h2>${hero.title}</h2>
-        <p>${hero.excerpt}</p>
-      </div>
-      <img src="${hero.image}" alt="${hero.title}">
-    </article>
-  </a>
-`;
+document.getElementById("newsContainer").innerHTML =
+  newsList.map(news => `
+    <a href="${news.link}" style="text-decoration:none;color:inherit;">
+      <article class="hero" style="margin-bottom:2rem;">
+        <div>
+          <h2>${news.title}</h2>
+          <p>${news.excerpt}</p>
+        </div>
+        <img src="${news.image}" alt="${news.title}">
+      </article>
+    </a>
+  `).join("");
 
 /* ---------- Google Form ---------- */
 function goToForm() {
@@ -233,6 +243,7 @@ toggle.onclick = () => {
 
 </body>
 </html>
+
 
 
 
