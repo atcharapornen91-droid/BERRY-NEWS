@@ -177,17 +177,19 @@ const API_URL = "https://script.google.com/macros/s/AKfycbwPS1HhLSUJbdIH6IPjY3Jj
 const container = document.getElementById("newsContainer");
 
 container.innerHTML = `
-  <article class="hero">
-    <img src="${hero.image}" alt="${hero.title}">
-    <div>
-      <h2>${hero.title}</h2>
-      <p>${hero.excerpt}</p>
+  <a href="${hero.link}" style="text-decoration:none; color:inherit;">
+    <article class="hero">
+      <img src="${hero.image}" alt="${hero.title}">
+      <div>
+        <h2>${hero.title}</h2>
+        <p>${hero.excerpt}</p>
 
-      <div class="reaction-summary">
-        กำลังโหลด...
+        <div class="reaction-summary">
+          กำลังโหลด...
+        </div>
       </div>
-    </div>
-  </article>
+    </article>
+  </a>
 `;
 
 /* ---------- reaction ---------- */
@@ -199,20 +201,20 @@ async function fetchReaction(newsId) {
 async function renderReaction(newsId) {
   const data = await fetchReaction(newsId);
 
-const fire = Number(data.fire) || 0;
-const laugh = Number(data.laugh) || 0;
-const facepalm = Number(data.facepalm) || 0;
-const skull = Number(data.skull) || 0;
+  const fire = Number(data.fire) || 0;
+  const laugh = Number(data.laugh) || 0;
+  const facepalm = Number(data.facepalm) || 0;
+  const skull = Number(data.skull) || 0;
 
-const total = fire + laugh + facepalm + skull;
+  const total = fire + laugh + facepalm + skull;
 
-document.querySelector(".reaction-summary").innerHTML = `
-  <span>🔥 ${fire}</span>
-  <span>😂 ${laugh}</span>
-  <span>🤦‍♀️ ${facepalm}</span>
-  <span>💀 ${skull}</span>
-  <span>รวม ${total}</span>
-`;
+  document.querySelector(".reaction-summary").innerHTML = `
+    <span>🔥 ${fire}</span>
+    <span>😂 ${laugh}</span>
+    <span>🤦‍♀️ ${facepalm}</span>
+    <span>💀 ${skull}</span>
+    <span>รวม ${total}</span>
+  `;
 }
 
 renderReaction(hero.id);
@@ -243,11 +245,11 @@ toggle.onclick = () => {
   localStorage.setItem("theme", dark ? "dark" : "light");
 };
 </script>
-
 <footer>
 © 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR
 </footer>
 
 </body>
 </html>
+
 
