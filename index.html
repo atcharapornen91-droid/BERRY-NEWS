@@ -25,15 +25,12 @@ body.dark {
   --border: #333;
 }
 
-/* base */
 body {
   font-family: Inter, sans-serif;
   background: var(--bg);
   color: var(--text);
   margin: 0;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   transition: 0.3s ease;
 }
 
@@ -41,71 +38,48 @@ body {
 header {
   padding: 1.5rem 2rem;
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
   position: sticky;
   top: 0;
+  background: var(--bg);
   z-index: 10;
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
   margin: 0;
+  font-family: 'Playfair Display', serif;
 }
 
-/* theme toggle */
+/* toggle */
 #themeToggle {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  background: var(--card);
-  border: none;
-  border-radius: 50%;
   width: 44px;
   height: 44px;
-  font-size: 1.3rem;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-  z-index: 99;
-}
-
-/* secret button */
-.secret-btn {
-  text-align: right;
-  margin: 1rem 2rem;
-}
-
-.secret-btn button {
-  background: none;
-  border: 1px solid var(--border);
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  color: var(--text);
+  background: var(--card);
+  font-size: 1.2rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
 }
 
 /* main */
 main {
   max-width: 900px;
-  margin: 2.5rem auto;
+  margin: 2rem auto;
   padding: 0 1.5rem;
-  flex: 1;
 }
 
-/* hero */
+/* card */
 .hero {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
-  gap: 2rem;
-  align-items: center;
+  gap: 1.5rem;
   background: var(--card);
-  padding: 1.8rem;
+  padding: 1.6rem;
   border-radius: 24px;
-  transition: transform 0.2s ease;
-}
-
-.hero:hover {
-  transform: translateY(-4px);
+  margin-bottom: 2rem;
 }
 
 .hero img {
@@ -115,51 +89,52 @@ main {
 
 .hero h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.2rem;
-  margin: 0 0 1rem;
+  margin-top: 0;
 }
 
-.hero p {
-  line-height: 1.6;
-  color: var(--subtext);
-}
-
-/* reaction */
-.reaction-summary {
+/* reactions */
+.reactions {
   display: flex;
-  gap: 1rem;
+  gap: .6rem;
   margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #777;
 }
 
-/* footer */
-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--subtext);
-  padding: 2rem 1rem;
-  opacity: 0.7;
-}
-
-/* hidden admin link */
-.hidden-link {
-  text-decoration: none;
-  color: var(--subtext);
-  opacity: 0.15;
-  margin-left: 6px;
+.reaction-btn {
+  position: relative;
+  border: none;
+  background: var(--card);
+  color: var(--text);
+  padding: .4rem .9rem;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: .9rem;
 }
 
-.hidden-link:hover {
-  opacity: 0.6;
+.reaction-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
 }
 
-/* responsive */
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
+/* bubble */
+.bubble {
+  position: absolute;
+  bottom: 0;
+  animation: floatUp 1.2s ease-out forwards;
+  font-size: 1.4rem;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(-90px) scale(1.6); opacity: 0; }
+}
+
+body.dark .bubble {
+  text-shadow: 0 0 12px rgba(255,255,255,.6);
+}
+
+@media(max-width:768px){
+  .hero { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -172,77 +147,95 @@ footer {
   <h1>Berry News 🍓</h1>
 </header>
 
-<div class="secret-btn">
-  <button onclick="goToForm()">🔐 ส่งข่าวลับ</button>
-</div>
-
 <main id="newsContainer"></main>
 
 <script>
-/* ---------- data ---------- */
-const newsList = [
-  {
-    id: "news002",
-    title: "เสียงเจาะผนังสะเทือนใจ พนักงานใกล้คลุ้มคลั่ง",
-    excerpt: "ร้านข้างๆ รีโนเวตหนัก เสียงดังจนลูกค้ากรี๊ดกลางร้าน…",
-    image: "images/news002.jpg",
-    link: "news002.html"
-  },
-  {
-    id: "news001",
-    title: "เปิดพศ.ใหม่ ประเดิมลาป่วยพบแพทย์เช็คคอ",
-    excerpt: "พี่ชายสุดหล่อครอปทีมลาป่วยตรวจคอ ทำออฟฟิศสะเทือน...",
-    image: "images/news001.jpg",
-    link: "news001.html"
-  }
-];
-
-/* ---------- render ---------- */
-document.getElementById("newsContainer").innerHTML =
-  newsList.map(news => `
-    <a href="${news.link}" style="text-decoration:none;color:inherit;">
-      <article class="hero" style="margin-bottom:2rem;">
-        <div>
-          <h2>${news.title}</h2>
-          <p>${news.excerpt}</p>
-        </div>
-        <img src="${news.image}" alt="${news.title}">
-      </article>
-    </a>
-  `).join("");
-
-/* ---------- Google Form ---------- */
-function goToForm() {
-  window.open(
-    "https://forms.gle/FKQCG28yZRLBAmFP7",
-    "_blank"
-  );
-}
+/* ---------- API ---------- */
+const API_URL =
+"https://script.google.com/macros/s/AKfycbzRx5puJR7bFhvIgcX4PU4z6TZFcPuEXZwngnNPHaXx0Hl40q3-A7uUxiGEWseVTIcbgA/exec";
 
 /* ---------- theme ---------- */
 const toggle = document.getElementById("themeToggle");
-const body = document.body;
-
 if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark");
+  document.body.classList.add("dark");
   toggle.textContent = "🌙";
 }
 
 toggle.onclick = () => {
-  body.classList.toggle("dark");
-  const dark = body.classList.contains("dark");
+  document.body.classList.toggle("dark");
+  const dark = document.body.classList.contains("dark");
   toggle.textContent = dark ? "🌙" : "☀️";
   localStorage.setItem("theme", dark ? "dark" : "light");
 };
-</script>
 
-<footer>
-  © 2026 Berry News | ขำได้ แต่อย่าแคปไปฟ้อง HR
-  <a href="secret-admin.html" class="hidden-link">.</a>
-</footer>
+/* ---------- reaction helpers ---------- */
+function hasReacted(id, emoji) {
+  return localStorage.getItem(`react_${id}_${emoji}`) === "1";
+}
+function markReacted(id, emoji) {
+  localStorage.setItem(`react_${id}_${emoji}`, "1");
+}
+
+/* ---------- load news ---------- */
+fetch(API_URL)
+  .then(r => r.json())
+  .then(renderNews);
+
+function renderNews(list) {
+  const el = document.getElementById("newsContainer");
+  el.innerHTML = list.map(n => `
+    <article class="hero" data-id="${n.id}">
+      <div>
+        <h2>${n.title}</h2>
+        <p>${n.excerpt}</p>
+
+        <div class="reactions">
+          ${["👍","😂","😡"].map(e => `
+            <button class="reaction-btn"
+              onclick="react(this,'${e}')"
+              ${hasReacted(n.id,e) ? "disabled":""}>
+              ${e} <span>${n.reactions[e] || 0}</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>
+      <img src="${n.image}">
+    </article>
+  `).join("");
+}
+
+/* ---------- react ---------- */
+function react(btn, emoji) {
+  const card = btn.closest(".hero");
+  const id = card.dataset.id;
+  if (hasReacted(id, emoji)) return;
+
+  markReacted(id, emoji);
+  btn.disabled = true;
+
+  /* bubble */
+  for (let i=0;i<6;i++){
+    const b=document.createElement("div");
+    b.className="bubble";
+    b.textContent=emoji;
+    b.style.left = `${30+Math.random()*40}%`;
+    b.style.animationDelay = `${i*0.07}s`;
+    btn.appendChild(b);
+    setTimeout(()=>b.remove(),1200);
+  }
+
+  /* update count */
+  const span = btn.querySelector("span");
+  span.textContent = Number(span.textContent)+1;
+
+  /* send */
+  fetch(`${API_URL}?action=react&id=${id}&emoji=${encodeURIComponent(emoji)}`);
+}
+</script>
 
 </body>
 </html>
+
 
 
 
