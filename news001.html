@@ -167,21 +167,29 @@ blockquote {
     }
 
     /* ข่าวก่อนหน้า / ถัดไป */
-    .news-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-    .news-nav a {
-      color: var(--muted);
-      text-decoration: none;
-    }
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem auto 2rem;
+  max-width: 800px;
+}
 
-    .news-nav a:hover {
-      color: var(--text);
-    }
+.nav a {
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.nav a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
 
     footer {
       text-align: center;
@@ -310,5 +318,6 @@ blockquote {
 
 </body>
 </html>
+
 
 
