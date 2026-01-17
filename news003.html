@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Berry News | Bingo คุณธรรม</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f7f8;
+  --card:#ffffff;
+  --text:#333;
+  --sub:#777;
+  --bubble:rgba(0,0,0,.08);
+}
+body.dark{
+  --bg:#1f2328;
+  --card:#2b2f36;
+  --text:#eee;
+  --sub:#aaa;
+  --bubble:rgba(255,255,255,.15);
+}
+body{
+  font-family:'Anuphan',sans-serif;
+  background:var(--bg);
+  margin:0;
+  color:var(--text);
+  transition:.3s;
+}
+
+/* header */
+header{
+  background:var(--card);
+  padding:20px 30px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+header h1{margin:0;font-size:24px;}
+header span{font-size:14px;color:var(--sub);}
+
+/* theme toggle */
+#themeToggle{
+  position:fixed;
+  top:1rem;
+  right:1rem;
+  width:44px;
+  height:44px;
+  border:none;
+  border-radius:50%;
+  font-size:1.3rem;
+  cursor:pointer;
+  background:var(--card);
+  box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+
+/* content */
+.container{
+  max-width:800px;
+  margin:30px auto;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.06);
+}
+
+.tag{
+  display:inline-block;
+  background:#ffe6ec;
+  color:#c94b6a;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  margin-bottom:16px;
+}
+h2{font-size:28px;}
+p{line-height:1.8;}
+blockquote{
+  background:rgba(0,0,0,.03);
+  border-left:4px solid #ff8fab;
+  padding:14px 18px;
+  border-radius:8px;
+  font-style:italic;
+}
+
+/* reaction */
+.reactions{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+}
+.reactions button{
+  border:none;
+  background:var(--bubble);
+  border-radius:999px;
+  padding:6px 14px;
+  font-size:1rem;
+  cursor:pointer;
+}
+
+/* nav */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  margin-top:40px;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--sub);
+  font-size:14px;
+}
+
+/* bubble anim */
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-120px);opacity:0}
+}
+
+footer{
+  text-align:center;
+  font-size:14px;
+  color:var(--sub);
+  margin:40px 0;
+}
+</style>
+</head>
+
+<body>
+
+<button id="themeToggle">☀️</button>
+
+<header>
+  <h1>Berry News 🍓</h1>
+  <span>ข่าวขำขันออฟฟิศ | news003</span>
+</header>
+
+<div class="container">
+
+<div class="container">
+
+  <div class="tag">ข่าวขำขัน</div>
+
+  <h2>Bingo คุณธรรม! เมื่อการชื่นชมผู้อื่น<br>กลายเป็นละครคุณธรรมแห่งปี</h2>
+
+  <p>
+    ต้นเรื่องทั้งหมด เริ่มจากกิจกรรมใหม่แกะกล่องของออฟฟิศอย่าง
+    <strong>Berry Bingo</strong> ที่มีตารางหลากหลายช่องให้พนักงานร่วมสนุก
+    หนึ่งในนั้นเป็นภารกิจง่ายๆ สายบวก เช่น
+    “การชื่นชมผู้อื่น” ฟีลบูสต์เอนเนอจี้ดีๆ ใครก็ทำได้
+  </p>
+
+  <p>
+    แต่ใครจะคิดว่า ภารกิจเล็กๆ เพียงหนึ่งช่อง
+    จะปลุก <strong>นักแสดงละครคุณธรรม</strong>
+    ที่ซ่อนอยู่ในตัวพนักงานออกมาได้ขนาดนี้
+  </p>
+
+  <p>
+    เมื่อทีมคลาวรูมส่งคลิป “ชื่นชมผู้อื่น” เข้าประกวด
+    สิ่งที่ทุกคนได้เห็นไม่ใช่แค่คำชมธรรมดา
+    แต่คือการแสดงที่อินเนอร์มา หน้าตามา อารมณ์มา
+    จนหลายคนเผลอสงสัยว่า
+    นี่คือคลิปกิจกรรม หรือกำลังดูละครหลังข่าว
+  </p>
+
+  <p>
+    ผลลัพธ์คือ ทุกแผนกหัวเราะกันน้ำตาเล็ด
+    ก่อนที่พี่สาวทีมคลาวรูมจะส่งข้อความถามในไลน์กลุ่มใหญ่อย่างจริงใจว่า
+    <strong>“แบบนี้ได้บิงโก 1 ช่องแล้วใช่มั้ยคะ”</strong>
+  </p>
+
+  <blockquote>
+    💬 น้องสาวทีมครอปเปอเรท: “นึกว่าละครคุณธรรม 5555”
+  </blockquote>
+
+  <blockquote>
+    💬 พี่ชายสุดหล่อทีมครอปเปอเรท: “อาจจะได้… หน้าตาคือ นักแสดงมาก”
+  </blockquote>
+
+  <blockquote>
+    💬 เจ้าของโปรเจค: “พิมพ์ใน remark ด้วยก็ดีค่ะ ว่าชมใคร ชมว่าอะไร”
+  </blockquote>
+
+  <p>
+    สรุปงานนี้ ไม่รู้จะได้บิงโกเพิ่มกี่ช่อง
+    แต่ที่แน่ๆ ออฟฟิศเราได้ทั้งเสียงหัวเราะ
+    มีมใหม่ และนักแสดงดาวรุ่งเพิ่มมาอีกหนึ่งทีมเรียบร้อย
+  </p>
+
+  <!-- reaction -->
+  <div class="reactions">
+    <button onclick="react('👍',this)">👍 <b>0</b></button>
+    <button onclick="react('😂',this)">😂 <b>0</b></button>
+    <button onclick="react('😡',this)">😡 <b>0</b></button>
+  </div>
+
+  <!-- nav -->
+  <div class="nav">
+    <a href="news002.html">⏮️ ข่าวก่อนหน้า</a>
+    <a href="index.html">🏠 กลับหน้าแรก</a>
+    <a href="news004.html">ข่าวถัดไป ⏭️</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Berry News | ข่าวนี้มีแต่เสียงหัวเราะ
+</footer>
+
+<script>
+const API =
+"https://script.google.com/macros/s/AKfycbzRx5puJR7bFhvIgcX4PU4z6TZFcPuEXZwngnNPHaXx0Hl40q3-A7uUxiGEWseVTIcbgA/exec";
+
+const NEWS_ID = "news003";
+
+/* load reaction */
+fetch(API)
+.then(r=>r.json())
+.then(data=>{
+  const n=data.find(x=>x.id===NEWS_ID);
+  if(!n) return;
+  document.querySelectorAll(".reactions button").forEach(btn=>{
+    const e=btn.textContent.trim();
+    btn.querySelector("b").textContent=n.reactions[e]||0;
+  });
+});
+
+/* react */
+function react(emoji,btn){
+  const key=`react_${NEWS_ID}_${emoji}`;
+  if(localStorage.getItem(key)) return;
+
+  fetch(`${API}?action=react&id=${NEWS_ID}&emoji=${emoji}`)
+  .then(r=>r.json())
+  .then(res=>{
+    if(res.error) return;
+    btn.querySelector("b").textContent=res.count;
+    localStorage.setItem(key,"1");
+    bubble(emoji);
+  });
+}
+
+/* bubble */
+function bubble(emoji){
+  for(let i=0;i<3;i++){
+    const b=document.createElement("div");
+    b.textContent=emoji;
+    b.style.position="fixed";
+    b.style.left=Math.random()*80+10+"%";
+    b.style.bottom="30px";
+    b.style.fontSize="2rem";
+    b.style.padding="6px 10px";
+    b.style.borderRadius="999px";
+    b.style.background="var(--bubble)";
+    b.style.animation="floatUp 1.5s ease-out forwards";
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),1500);
+  }
+}
+
+/* theme */
+const toggle=document.getElementById("themeToggle");
+if(localStorage.theme==="dark"){
+  document.body.classList.add("dark");
+  toggle.textContent="🌙";
+}
+toggle.onclick=()=>{
+  document.body.classList.toggle("dark");
+  localStorage.theme=document.body.classList.contains("dark")?"dark":"light";
+  toggle.textContent=document.body.classList.contains("dark")?"🌙":"☀️";
+};
+</script>
+
+</body>
+</html>
